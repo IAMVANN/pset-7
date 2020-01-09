@@ -10,19 +10,62 @@ if (a[0] === b[0] || a[lastEleA] ===  b[lastEleB]){
 } else {
     return false;
 }
-
-
-
-  // write your code here
 }
 
 function endsMeet(values, n) {
+if(!values ||values.length < n || n < 0){
+    return [];
+}
+let position = 0;
+let array = [];
+let lengthV = values.length - n;
+if(n == 0){
+    array[position] = values[lengthV - 1];
+} else {
+    for(let a = n; a > 0; a--){
+        array[position] = values[position];
+        position++;
+    }
 
-  // write your code here
+    for(let a = n; a > 0; a-- ){
+        array[position] = values[lengthV];
+        position++;
+        lengthV++;
+    }
+}
+
+return array;
+
 }
 
 function difference(numbers) {
-  // write your code here
+    if(!numbers || numbers.length < 1){
+        return undefined;
+    }
+    let pos = numbers.length - 1;
+    let isTrue = true;
+    let largeValue = 0;
+    let smallValue = 0;
+    for (pos; pos >= 0; pos--){
+        let currVal = Number(numbers[pos]);
+        if(currVal == false){
+            isTrue = false;
+        } else {
+            if(currVal > largeValue){
+                largeValue = currVal;
+            }
+            if(currVal < smallValue){
+                smallValue = currVal;
+            }
+        }
+    }
+     if(!isTrue){
+         return undefined;
+     } else {
+         let value = largeValue - smallValue;
+         return value;
+
+     }
 }
 
 function max(number) {
