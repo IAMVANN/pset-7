@@ -14,13 +14,13 @@ if (a[0] === b[0] || a[lastEleA] ===  b[lastEleB]){
 
 function endsMeet(values, n) {
 if(!values ||values.length < n || n < 0){
-    return [];
+    return []; //just a comment
 }
 let position = 0;
 let array = [];
 let lengthV = values.length - n;
 if(n == 0){
-    array[position] = values[lengthV - 1];
+    return array;
 } else {
     for(let a = n; a > 0; a--){
         array[position] = values[position];
@@ -45,10 +45,10 @@ function difference(numbers) {
     let pos = numbers.length - 1;
     let isTrue = true;
     let largeValue = 0;
-    let smallValue = 0;
+    let smallValue = numbers[0];
     for (pos; pos >= 0; pos--){
         let currVal = Number(numbers[pos]);
-        if(currVal == false){
+        if(!currVal){
             isTrue = false;
         } else {
             if(currVal > largeValue){
@@ -69,15 +69,71 @@ function difference(numbers) {
 }
 
 function max(number) {
-  // write your code here
+if(!number || number.length < 3 || number.length%2 == 0){
+    return undefined;
 }
+let lengthy = number.length - 1;
+let value;
+for(let i = number.length -1; i >= 0; i--){
+    let a = Number(number[i]);
+    if(!a){
+       return undefined;
+    }
+    if(i == lengthy){
+        value = number[i];
+    } else if(i == 0){
+        if(number[i] > value){
+            value = number[i];
+        }
+    }
 
+}
+return value;
+}
+//hey;
 function middle(values) {
-  // write your code here
+    if(!values ||  values.length < 3 || values.length%2 == 0 ){
+        return [];
+    }
+    let a = values.length/2 - 1;
+    let uno = a - .5;
+    let dos = a + .5;
+    let tres = a + 1.5;
+    let array = [values[uno], values[dos], values[tres]];
+    return array;
 }
 
 function increasing(numbers) {
-  // write your code here
+    if(!numbers || numbers.length < 3){
+        return false;
+    }
+        let isTru = false;
+    for(let i = 0; i < numbers.length - 2; i++ ){
+
+        let b = Number.isInteger(numbers[i]);
+        if( b == false){
+            return false;
+        }
+        let currNum = numbers[i];
+        let oneUp = numbers[i + 1];
+        let twoUp = numbers[i + 2];
+        let c = Number.isInteger(oneUp);
+        let d = Number.isInteger(twoUp);
+        if(c == false || d == false){
+            return false;
+        }
+
+        if(currNum < oneUp && oneUp < twoUp){
+
+            isTru = true;
+        }
+    }
+    if(isTru){
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
 function everywhere(values, x) {
