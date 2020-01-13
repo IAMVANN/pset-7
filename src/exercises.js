@@ -137,7 +137,20 @@ function increasing(numbers) {
 }
 
 function everywhere(values, x) {
-  // write your code here
+    if(!values || values.length < 1 || !x){
+    return false;
+    }
+    for(let i = 0; i < values.length; i++){
+        if(values[i] !== x){
+            if(values[i - 1] == x || values[i + 1] == x){
+
+            } else{
+                return false;
+            }
+
+        }
+    }
+    return true;
 }
 
 function consecutive(numbers) {
