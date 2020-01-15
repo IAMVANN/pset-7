@@ -366,7 +366,9 @@ function testClumps() {
  */
 
 function isEqual(expected, actual) {
-  if (expected && !actual || !expected && actual) {
+  if (!expected && !actual) {
+    return true;
+  } else if ((expected && !actual) || (!expected && actual)) {
     return false;
   } else if (expected.length !== actual.length) {
     return false;
@@ -397,12 +399,12 @@ function format(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i]) {
       if (typeof arr[i] === "string") {
-        formatted = formatted + ((i === arr.length - 1) ? `\"${arr[i]}\"` : `\"${arr[i]}\", `);
+        formatted = formatted + (i === arr.length - 1 ? `\"${arr[i]}\"` : `\"${arr[i]}\", `);
       } else if (typeof arr[i] === "number") {
-        formatted = formatted + ((i === arr.length - 1) ? `${arr[i]}` : `${arr[i]}, `);
+        formatted = formatted + (i === arr.length - 1 ? `${arr[i]}` : `${arr[i]}, `);
       }
     } else {
-      formatted = formatted + ((i === arr.length - 1) ? "undefined" : "undefined, ");
+      formatted = formatted + (i === arr.length - 1 ? "undefined" : "undefined, ");
     }
   }
 
