@@ -176,8 +176,63 @@ function consecutive(numbers) {
 }
 
 function balance(numbers) {
-  // write your code here
-  console.log("test");
+    if(!numbers || numbers.length < 2){
+        return false;
+    }
+    let array = numbers;
+    let leftHand = [];
+    let rightHand = [];
+    let lengthy = numbers.length / 2;
+    let rightHolder = 0;
+    let leftHolder = 0;
+    let isTru = false;
+    let hitrate = 0;
+    let side;
+    while(!isTru){
+        for(let i = 0; i < numbers.length; i++ ){
+            if (Number.isInteger(numbers[i]) == false && !numbers[i]){
+                return false;
+            }
+            if(i >= lengthy){
+                rightHand[rightHolder] = array[i];
+                rightHolder++;
+            } else {
+                leftHand[leftHolder] = array[i];
+                leftHolder++;
+            }
+        }
+        let right = 0;
+        let left = 0;
+
+        for(i = 0; i < rightHolder.length; i++){
+            right =  right + rightHolder[i];
+        }
+        for(i = 0; i < leftHolder.length; i++){
+            left =  left + leftHolder[i];
+        }
+
+        if(right == left){
+            return true;
+        } else if(right > left){
+            if(lengthy > 0){
+                lengthy--;
+            }
+            if(side == undefined){
+                side = false;
+            } else if(side == true){
+                return false;
+            }
+        } else if(left > right){
+            if(lengthy < numbers.length - 2 ){
+                lengthy++;
+            }
+            if(side == undefined){
+                side = true;
+            } else if(side == false){
+                return false;
+            }
+        }
+    }
 }
 
 function clumps(values) {
