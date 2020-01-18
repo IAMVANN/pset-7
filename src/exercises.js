@@ -331,7 +331,33 @@ function balance(numbers) {
 }
 
 function clumps(values) {
-  // write your code here
+    if(!values){
+        return -1;
+    }
+    let amount = 0;
+    let combo = false;
+    let pVal;
+    let curVal;
+    for(let i = 0; i < values.length; i++){
+        if(i == 0){
+            curVal = values[i];
+        } else {
+            pVal = curVal;
+            curVal = values[i];
+            if(pVal == curVal){
+                if(combo == false){
+                    combo = true;
+                    amount++;
+                }
+            } else{
+                if(combo == true){
+                    combo = false;
+                }
+            }
+
+        }
+    }
+    return amount;
 }
 
 /*
