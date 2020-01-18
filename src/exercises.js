@@ -180,15 +180,100 @@ function balance(numbers) {
         return false;
     }
     let array = numbers;
-    let leftHand = [];
-    let rightHand = [];
-    let lengthy = numbers.length / 2;
-    let rightHolder = 0;
-    let leftHolder = 0;
+    let split = (numbers.length - 1) / 2;
+    let isTru = false;
+    let side;
+    let pside;
+    while(!isTru){
+        let leftHand = [];
+        let rightHand = [];
+        let rightHolder = 0;
+        let leftHolder = 0;
+        let right = 0;
+        let left = 0;
+        for(let i = 0; i < numbers.length; i++ ){
+            if (Number.isInteger(numbers[i]) == false && !numbers[i]){
+                return false;
+            }
+            if(i > split){
+                rightHand[rightHolder] = array[i];
+                rightHolder++;
+            } else {
+                leftHand[leftHolder] = array[i];
+                leftHolder++;
+            }
+        }
+        for(let i = 0; i < rightHand.length; i++){
+            right += rightHand[i];
+        }
+        for(let i = 0; i < leftHand.length; i++){
+            left += leftHand[i];
+        }
+        if(right == left){
+            return true;
+        } else if(right > left){
+            if(split == array.length - 1){
+                return false;
+            } else {
+                split++;
+            }
+            if(side == undefined){
+                pside = side;
+                side = true;
+            } else if(side == true){
+                pside = side;
+                side = true;
+            } else if (side == false) {
+                if(pside == true){
+                    return false;
+                } else{
+                    pside = side;
+                    side = true;
+                }
+
+            }
+
+        } else if(left > right){
+
+            if(split == 0){
+                return false;
+            } else{
+                split--;
+            }
+            if(side == undefined){
+                pside = side;
+                side = false;
+            } else if(side == false){
+                pside = side;
+                side = false;
+            } else if (side == true) {
+                if(pside == false){
+                    return false;
+                } else{
+                    pside = side;
+                    side = false;
+                }
+
+            }
+
+        }
+    }
+    /*
+    if(!numbers || numbers.length < 2){
+        return false;
+    }
+    let array = numbers;
+
+    let lengthy = (numbers.length - 1) / 2;
+
     let isTru = false;
     let hitrate = 0;
     let side;
     while(!isTru){
+        let leftHand = [];
+        let rightHand = [];
+        let rightHolder = 0;
+        let leftHolder = 0;
         for(let i = 0; i < numbers.length; i++ ){
             if (Number.isInteger(numbers[i]) == false && !numbers[i]){
                 return false;
@@ -203,36 +288,46 @@ function balance(numbers) {
         }
         let right = 0;
         let left = 0;
-
-        for(i = 0; i < rightHolder.length; i++){
-            right =  right + rightHolder[i];
+        for(i = 0; i < rightHand.length; i++){
+            right =  right + rightHand[i];
         }
-        for(i = 0; i < leftHolder.length; i++){
-            left =  left + leftHolder[i];
+        for(i = 0; i < leftHand.length; i++){
+            left =  left + leftHand[i];
         }
-
+        console.log("right = " + right + " left = " + left);
+        console.log(side)
         if(right == left){
+            isTru = true;
             return true;
         } else if(right > left){
-            if(lengthy > 0){
+            if(lengthy == 0){
+                return false;
+            }
+            if(lengthy > 1){
                 lengthy--;
             }
+
             if(side == undefined){
                 side = false;
             } else if(side == true){
+                isTru = true;
                 return false;
             }
         } else if(left > right){
             if(lengthy < numbers.length - 2 ){
                 lengthy++;
             }
+            if(lengthy < numbers.length - 1 ){
+                return false;
+            }
             if(side == undefined){
                 side = true;
             } else if(side == false){
+                isTru = true;
                 return false;
             }
         }
-    }
+    }*/
 }
 
 function clumps(values) {
